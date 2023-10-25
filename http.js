@@ -65,9 +65,8 @@ export class HTTPClient {
             }
           })
       }
-}
-
-patch(url, data) {
+      //Patch Method
+  patch(url, data) {
   return new Promise(async (resolve, reject) =>{
     let currentMethod = {
       method: "PATCH",
@@ -81,5 +80,6 @@ patch(url, data) {
       reject(`Patch Error: ${response.status}:${response.statusText}`);
     }
   })
+  }
 }
     

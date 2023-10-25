@@ -51,7 +51,7 @@ function ProcessDelete(err, res) {
     output = `<p>${err}</p>`;
   } else {
     output = "<ul style=\"list-style:none\">";
-    output += `<li>${res}</li>`
+    output += `<li>User ${user.id} - ${user.name}</li>`
     output += "</ul>";
   }
   document.querySelector("#response").innerHTML = output;
