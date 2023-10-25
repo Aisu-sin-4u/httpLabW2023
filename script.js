@@ -57,6 +57,18 @@ function ProcessDelete(err, res) {
   document.querySelector("#response").innerHTML = output;
 }
 
+function ProcessPatch(err, res) {
+  let output;
+  if (err) {
+    output = `<p>${err}</p>`;
+  } else {
+    output = "<ul style=\"list-style:none\">";
+    output += `<li>${res}</li>`
+    output += "</ul>";
+  }
+  document.querySelector("#response").innerHTML = output;
+}
+
 function sendRequest(reqType, targetURL) {
   let data;
   switch (reqType) {
@@ -88,7 +100,13 @@ function sendRequest(reqType, targetURL) {
       Client.delete(targetURL)
       .then((resp) => ProcessDelete(null,resp))
       .catch((err) => ProcessDelete(err))
-      break;            
+      break;  
+    case "patch": // Patch user in the placeholder website
+      // http.patch(targetURL, ProcessDelete);
+      Client.patch(targetURL)
+      .then((resp) => ProcessPatch(null,resp))
+      .catch((err) => ProcessPatch(err))
+      break;      
   }
 }
 

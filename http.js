@@ -66,4 +66,20 @@ export class HTTPClient {
           })
       }
 }
+
+patch(url, data) {
+  return new Promise(async (resolve, reject) =>{
+    let currentMethod = {
+      method: "PATCH",
+      body: JSON.stringify(data)
+    }
+    const response = await fetch(url, currentMethod);
+    const output = await response.json();
+    if(response.ok){
+      resolve(JSON.stringify(output));
+    }else{
+      reject(`Patch Error: ${response.status}:${response.statusText}`);
+    }
+  })
+}
     
