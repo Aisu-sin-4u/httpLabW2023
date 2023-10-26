@@ -62,8 +62,9 @@ function ProcessPatch(err, res) {
   if (err) {
     output = `<p>${err}</p>`;
   } else {
+    const user = JSON.parse(res);
     output = "<ul style=\"list-style:none\">";
-output += `<li>User ${user.id} - ${user.name}</li>`
+    output += `<li>User ${user.id} - ${user.name}</li>`
     output += "</ul>";
   }
   document.querySelector("#response").innerHTML = output;
@@ -89,7 +90,7 @@ function sendRequest(reqType, targetURL) {
       break;
     case "put": // Put (update) user in the endpoint
       data = {id: 1,
-              name:"Professor Vickers"};
+      name:"Professor Vickers"};
       // http.put(targetURL, data, ProcessPut);
       Client.put(targetURL, data)
       .then((resp) => ProcessPut(null,resp))
@@ -103,6 +104,8 @@ function sendRequest(reqType, targetURL) {
       break;  
     case "patch": // Patch user in the placeholder website
       // http.patch(targetURL, ProcessPatch);
+      data = {id: 1,
+      name:"Professor Vickers"};
       Client.patch(targetURL)
       .then((resp) => ProcessPatch(null,resp))
       .catch((err) => ProcessPatch(err))
