@@ -89,6 +89,7 @@ export class HTTPClient {
   return new Promise(async (resolve, reject) =>{
     let currentMethod = {
       method: "PATCH",
+      headers: {"content-type": "application/json"}
       body: JSON.stringify(data)
     }
     const response = await fetch(url, currentMethod);
