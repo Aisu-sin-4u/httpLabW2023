@@ -10,6 +10,10 @@ export class HTTPClient {
       const data = await response.json();
       if(response.ok){
         resolve(JSON.stringify(data));
+        // if(data.ok){
+        //   resolve(JSON.stringify(data));
+        // }
+        // reject(`Post Error: ${response.status}:${response.statusText}`);
       }else{
         reject(`Get Error: ${response.status}:${response.statusText}`);
       }
@@ -21,12 +25,17 @@ export class HTTPClient {
         return new Promise(async (resolve, reject) =>{
           let currentMethod = {
             method: "POST",
+            headers: {"content-type": "application/json"},
             body: JSON.stringify(data)
           }
           const response = await fetch(url, currentMethod);
           const output = await response.json();
           if(response.ok){
             resolve(JSON.stringify(output));
+            // if(output.ok){
+            //   resolve(JSON.stringify(output));
+            // }
+            // reject(`Post Error: ${response.status}:${response.statusText}`);
           }else{
             reject(`Post Error: ${response.status}:${response.statusText}`);
           }
@@ -35,15 +44,20 @@ export class HTTPClient {
       
   //PUT Method    
   put(url, data) {
-            return new Promise(async (resolve, reject) =>{
-              let currentMethod = {
-                method: "PUT",
-                body: JSON.stringify(data)
-              }
-              const response = await fetch(url, currentMethod);
-              const output = await response.json();
-              if(response.ok){
+      return new Promise(async (resolve, reject) =>{
+        let currentMethod = {
+          method: "PUT",
+          headers: {"content-type": "application/json"},
+          body: JSON.stringify(data)
+        }
+        const response = await fetch(url, currentMethod);
+        const output = await response.json();
+        if(response.ok){
                 resolve(JSON.stringify(output));
+                // if(output.ok){
+                //   resolve(JSON.stringify(output));
+                // }
+                // reject(`Put Error: ${response.status}:${response.statusText}`);
               }else{
                 reject(`Put Error: ${response.status}:${response.statusText}`);
               }
@@ -52,19 +66,24 @@ export class HTTPClient {
       
   //DELETE Method    
   delete(url) {
-          return new Promise(async (resolve, reject) =>{
-            let currentMethod = {
-              method: "DELETE",
-            }
-            const response = await fetch(url, currentMethod);
-            const output = await response.json();
-            if(response.ok){
-              resolve(JSON.stringify(output));
-            }else{
-              reject(`delete Error: ${response.status}:${response.statusText}`);
-            }
-          })
+      return new Promise(async (resolve, reject) =>{
+        let currentMethod = {
+          method: "DELETE",
+          headers: {"content-type": "application/json"}
+        }
+        const response = await fetch(url, currentMethod);
+        const output = await response.json();
+        if(response.ok){
+          resolve(JSON.stringify(output));
+        // if(output.ok){
+        //   resolve(JSON.stringify(output));
+        // }
+        // reject(`Delete Error: ${response.status}:${response.statusText}`);
+      }else{
+        reject(`Delete Error: ${response.status}:${response.statusText}`);
       }
+    })
+  }
       //Patch Method
   patch(url, data) {
   return new Promise(async (resolve, reject) =>{
@@ -76,6 +95,10 @@ export class HTTPClient {
     const output = await response.json();
     if(response.ok){
       resolve(JSON.stringify(output));
+      // if(output.ok){
+      //   resolve(JSON.stringify(output));
+      // }
+      // reject(`Patch Error: ${response.status}:${response.statusText}`);
     }else{
       reject(`Patch Error: ${response.status}:${response.statusText}`);
     }

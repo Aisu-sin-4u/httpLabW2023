@@ -1,6 +1,6 @@
 // Instantiate the object
 // const http = new coreHTTP;
-import { HTTPClient} from "./http.js";
+import { HTTPClient } from "./http.js";
 
 const Client = new HTTPClient;
 
@@ -12,7 +12,7 @@ function ProcessGet(err, res) {
     const users = JSON.parse(res);
     output = "<ul style=\"list-style:none\">";
     users.forEach((user) => {
-      output += `<li>User ${user.id} - ${user.name}</li>`
+      output += `<li>User ${user.id} - ${user.body}</li>`
     })
     output += "</ul>";
   }
@@ -51,7 +51,7 @@ function ProcessDelete(err, res) {
     output = `<p>${err}</p>`;
   } else {
     output = "<ul style=\"list-style:none\">";
-    output += `<li>User ${user.id} - ${user.name}</li>`
+    output += `<li>${res}</li>`
     output += "</ul>";
   }
   document.querySelector("#response").innerHTML = output;
@@ -63,7 +63,7 @@ function ProcessPatch(err, res) {
     output = `<p>${err}</p>`;
   } else {
     output = "<ul style=\"list-style:none\">";
-    output += `<li>${res}</li>`
+output += `<li>User ${user.id} - ${user.name}</li>`
     output += "</ul>";
   }
   document.querySelector("#response").innerHTML = output;
@@ -102,7 +102,7 @@ function sendRequest(reqType, targetURL) {
       .catch((err) => ProcessDelete(err))
       break;  
     case "patch": // Patch user in the placeholder website
-      // http.patch(targetURL, ProcessDelete);
+      // http.patch(targetURL, ProcessPatch);
       Client.patch(targetURL)
       .then((resp) => ProcessPatch(null,resp))
       .catch((err) => ProcessPatch(err))
