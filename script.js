@@ -106,7 +106,7 @@ function sendRequest(reqType, targetURL) {
       // http.patch(targetURL, ProcessPatch);
       data = {id: 1,
       name:"Professor Vickers"};
-      Client.patch(targetURL)
+      Client.patch(targetURL, data)
       .then((resp) => ProcessPatch(null,resp))
       .catch((err) => ProcessPatch(err))
       break;      
